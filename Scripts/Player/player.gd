@@ -7,8 +7,6 @@ var is_attacking: bool = false
 var gravity = 980
 const jump_velocity = -400.0
 @onready var sprites: AnimatedSprite2D = $Sprites
-@export var maxHealth = 3
-@export var currentHealth: int = maxHealth
 @onready var hurtTimer = $HurtTimer
 @export var knockBackPower: int = 500
 @onready var hurtbox = $HurtBox/CollisionShape2D
@@ -18,14 +16,25 @@ const jump_velocity = -400.0
 @onready var collision = $Collision
 @onready var collision_initial_position = collision.position
 
-@onready var visionBox = $VisionBox
-@onready var visionBox_initial_position = visionBox.position
-
 var isHurt: bool = false
+
+var foot_step_frames = [1,5]
+
+@export var sfx_run:  AudioStream
+@export var sfx_jump: AudioStream
+@export var sfx_attack: AudioStream
+@export var sfx_hurt: AudioStream
+
+@onready var sfx_player = %sfx_player
 
 func _ready() -> void:
 	hitbox.disabled = true
 	
+func load_sfx(sfx_to_load):
+	if sfx_player.stream != sfx_to_load:
+		sfx_player.stop()
+		sfx_player.stream = sfx_to_load
+
 func HandleInput(delta):
 	velocity.x = 0
 	if not is_on_floor():
@@ -73,26 +82,27 @@ func attack():
 	await sprites.animation_finished
 	hitbox.disabled = true
 	is_attacking = false
+	load_sfx(sfx_attack)
+	sfx_player.play()
 	
 func adjust_hitbox_position():
 	if sprites.flip_h:
 		hitbox.position.x = -abs(hitbox_initial_position.x) + 24
 		hurtbox.position.x = -abs(hurtbox_initial_position.x) + 24
 		collision.position.x = -abs(collision_initial_position.x) + 24
-		visionBox.position.x = -abs(visionBox_initial_position.x) + 24
 	else:
 		hitbox.position.x = abs(hitbox_initial_position.x) 
 		hurtbox.position.x = abs(hurtbox_initial_position.x)
 		collision.position.x = abs(collision_initial_position.x)
-		visionBox.position.x = abs(visionBox_initial_position.x)
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if isHurt: return
-	currentHealth -= 1
+	Global.currentHealth -= 1
 	
-	if currentHealth < 0:
-		currentHealth = maxHealth
-	healthChanged.emit()
+	if Global.currentHealth < 0:
+		print("morreu")
+		
+	Global.healthChanged.emit()
 	isHurt = true
 	knockBack(area.get_parent().velocity)
 	
@@ -104,3 +114,13 @@ func knockBack(enemyVelocity: Vector2):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockBackPower
 	velocity = knockbackDirection
 	move_and_slide()
+
+
+func _on_sprites_frame_changed() -> void:
+	if sprites.animation == "idle": return
+	if sprites.animation == "jump": return
+	if sprites.animation == "fall": return
+	if sprites.animation == "attack": return
+	load_sfx(sfx_run)
+	
+	if sprites.frame in foot_step_frames: sfx_player.play()

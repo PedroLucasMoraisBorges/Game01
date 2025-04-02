@@ -11,7 +11,12 @@ config_version=5
 [application]
 
 config/name="Novo Projeto de Jogo"
+run/main_scene="uid://en4ootnb2vy2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+
+[autoload]
+
+Global="*res://Global.gd"
 
 [display]
 

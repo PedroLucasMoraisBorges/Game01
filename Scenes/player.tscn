@@ -1,8 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://drkxaohflxnn5"]
+[gd_scene load_steps=42 format=3 uid="uid://drkxaohflxnn5"]
 
 [ext_resource type="Texture2D" uid="uid://bickp8aknjhdt" path="res://Assets/Warrior/Individual Sprite/Attack/Warrior_Attack_1.png" id="1_7emwf"]
-[ext_resource type="Script" uid="uid://dm6qihg4vjxwh" path="res://Player/player.gd" id="1_hshwv"]
+[ext_resource type="Script" uid="uid://dm6qihg4vjxwh" path="res://Scripts/Player/player.gd" id="1_hshwv"]
 [ext_resource type="Texture2D" uid="uid://trffijfddfv" path="res://Assets/Warrior/Individual Sprite/Attack/Warrior_Attack_2.png" id="2_hshwv"]
+[ext_resource type="AudioStream" uid="uid://bn3shr5ns4e75" path="res://Assets/Sound/Minifantasy_Dungeon/16_human_walk_stone_3.wav" id="2_iyprq"]
+[ext_resource type="AudioStream" uid="uid://dl4k3egm5arof" path="res://Assets/Sound/Minifantasy_Dungeon/07_human_atk_sword_2.wav" id="3_f4lon"]
 [ext_resource type="Texture2D" uid="uid://hp4l3rkp5bv5" path="res://Assets/Warrior/Individual Sprite/Attack/Warrior_Attack_3.png" id="3_gpjlu"]
 [ext_resource type="Texture2D" uid="uid://cwdiqeygnyog6" path="res://Assets/Warrior/Individual Sprite/Attack/Warrior_Attack_4.png" id="4_8mwp6"]
 [ext_resource type="Texture2D" uid="uid://bd5y0wsfm4sie" path="res://Assets/Warrior/Individual Sprite/Attack/Warrior_Attack_5.png" id="5_qemgg"]
@@ -34,21 +36,10 @@
 [ext_resource type="Texture2D" uid="uid://disyhmx3ot3uf" path="res://Assets/Warrior/Individual Sprite/Run/Warrior_Run_6.png" id="28_c6x0f"]
 [ext_resource type="Texture2D" uid="uid://dknd8j0qhamst" path="res://Assets/Warrior/Individual Sprite/Run/Warrior_Run_7.png" id="29_jp1hh"]
 [ext_resource type="Texture2D" uid="uid://wvek4i20hatb" path="res://Assets/Warrior/Individual Sprite/Run/Warrior_Run_8.png" id="30_qs4pp"]
-[ext_resource type="Texture2D" uid="uid://dqf62qoqki1s7" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarUnder.png" id="39_8ynux"]
-[ext_resource type="Script" uid="uid://cho4l8ahstrhe" path="res://Player/healthBar.gd" id="39_f4lon"]
-[ext_resource type="Texture2D" uid="uid://xv4vvm52nebv" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarProgress.png" id="40_d30e8"]
+[ext_resource type="Script" uid="uid://lny1ryregkfy" path="res://Scripts/Global/state_machine.gd" id="40_8ynux"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hshwv"]
-size = Vector2(51, 86)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4o1l"]
-size = Vector2(48, 83)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ynux"]
-size = Vector2(42, 82.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qs4pp"]
-size = Vector2(50, 86)
+size = Vector2(18, 33)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6pogt"]
 animations = [{
@@ -182,13 +173,46 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ynux"]
+size = Vector2(14.5, 33.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4o1l"]
+size = Vector2(18, 33)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 2
 script = ExtResource("1_hshwv")
+sfx_run = ExtResource("2_iyprq")
+sfx_attack = ExtResource("3_f4lon")
+
+[node name="HurtTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="sfx_player" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-104, 59)
+
+[node name="State Machine" type="Node" parent="."]
+script = ExtResource("40_8ynux")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -3)
+position = Vector2(-1, -1.5)
 shape = SubResource("RectangleShape2D_hshwv")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -6)
+scale = Vector2(0.97727, 0.97727)
+sprite_frames = SubResource("SpriteFrames_6pogt")
+animation = &"idle"
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(28, -2)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+self_modulate = Color(0.87648, 0, 0.0621183, 1)
+shape = SubResource("RectangleShape2D_8ynux")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 16
@@ -196,52 +220,8 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 self_modulate = Color(0, 1, 0.416667, 1)
-position = Vector2(-2, -10)
+position = Vector2(-1, -1.5)
 shape = SubResource("RectangleShape2D_i4o1l")
 
-[node name="HurtTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="PlayerHealthBar" type="TextureProgressBar" parent="."]
-layout_direction = 2
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -559.0
-offset_top = 259.0
-offset_right = -314.0
-offset_bottom = 289.0
-grow_vertical = 0
-value = 100.0
-nine_patch_stretch = true
-stretch_margin_left = 4
-stretch_margin_top = 4
-stretch_margin_right = 4
-stretch_margin_bottom = 4
-texture_under = ExtResource("39_8ynux")
-texture_progress = ExtResource("40_d30e8")
-script = ExtResource("39_f4lon")
-
-[node name="HitBox" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-self_modulate = Color(0.87648, 0, 0.0621183, 1)
-position = Vector2(65, -20.75)
-shape = SubResource("RectangleShape2D_8ynux")
-
-[node name="VisionBox" type="Area2D" parent="."]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionBox"]
-position = Vector2(-2, -3)
-shape = SubResource("RectangleShape2D_qs4pp")
-
-[node name="Sprites" type="AnimatedSprite2D" parent="."]
-position = Vector2(12, -14)
-scale = Vector2(2.54545, 2.54545)
-sprite_frames = SubResource("SpriteFrames_6pogt")
-animation = &"idle"
-
+[connection signal="frame_changed" from="Sprites" to="." method="_on_sprites_frame_changed"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

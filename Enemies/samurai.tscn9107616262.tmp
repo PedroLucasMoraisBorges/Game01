@@ -12,18 +12,6 @@
 [ext_resource type="Script" uid="uid://dry3xx7r5geu3" path="res://Scripts/State Machine/Enemies/EnemyGroundIdle.gd" id="10_1akt7"]
 [ext_resource type="Script" uid="uid://m44h8xggopme" path="res://Scripts/State Machine/Enemies/EnemyGroundFollow.gd" id="11_10jnh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2fy8"]
-size = Vector2(16, 33)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_65l4t"]
-size = Vector2(119.5, 47.25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4fj6"]
-size = Vector2(7.01369, 14.4658)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8vpk"]
-size = Vector2(12, 30)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_65l4t"]
 atlas = ExtResource("1_j2fy8")
 region = Rect2(0, 0, 96, 96)
@@ -381,49 +369,56 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2fy8"]
+size = Vector2(38, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8vpk"]
+size = Vector2(36, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4fj6"]
+size = Vector2(16.6575, 33.6712)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65l4t"]
+size = Vector2(334, 107)
+
 [node name="Samurai" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_y8vpk")
 
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -39)
+scale = Vector2(2.28125, 2.28125)
+sprite_frames = SubResource("SpriteFrames_x1dat")
+animation = &"idle"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_j2fy8")
 
-[node name="VisionBox" type="Area2D" parent="."]
-collision_layer = 64
+[node name="HitBox" type="Area2D" parent="." groups=["Weapow"]]
+collision_layer = 32
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionBox"]
-position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_65l4t")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(61, -1)
+shape = SubResource("RectangleShape2D_y8vpk")
 
 [node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(-3, -39)
 scale = Vector2(2.28125, 2.28125)
 collision_layer = 16
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 1.19209e-07)
+position = Vector2(4.76837e-07, 16.8356)
 shape = SubResource("RectangleShape2D_b4fj6")
 
-[node name="HitBox" type="Area2D" parent="." groups=["Weapow"]]
-position = Vector2(28, 0)
-collision_layer = 32
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("RectangleShape2D_y8vpk")
-
-[node name="Sprites" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -15)
-scale = Vector2(0.954427, 0.954427)
-sprite_frames = SubResource("SpriteFrames_x1dat")
-animation = &"idle"
-
 [node name="EnemyProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("enemy")]
-offset_left = -13.0
-offset_top = -25.0
-offset_right = 13.0
-offset_bottom = -17.0
+offset_left = -31.0
+offset_top = -56.0
+offset_right = 31.0
+offset_bottom = -45.0
 value = 100.0
 nine_patch_stretch = true
 stretch_margin_left = 4
@@ -434,6 +429,13 @@ texture_under = ExtResource("6_65l4t")
 texture_progress = ExtResource("7_0gmv0")
 script = ExtResource("6_b4fj6")
 enemy = NodePath("..")
+
+[node name="VisionBox" type="Area2D" parent="."]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionBox"]
+position = Vector2(1, -20.5)
+shape = SubResource("RectangleShape2D_65l4t")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("9_0gmv0")
@@ -447,5 +449,5 @@ enemy = NodePath("../..")
 script = ExtResource("11_10jnh")
 enemy = NodePath("../..")
 
-[connection signal="area_entered" from="VisionBox" to="." method="_on_vision_box_area_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="VisionBox" to="." method="_on_vision_box_area_entered"]
