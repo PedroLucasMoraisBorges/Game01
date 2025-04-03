@@ -1,5 +1,6 @@
-[gd_scene load_steps=123 format=3 uid="uid://coraw7blqk3kb"]
+[gd_scene load_steps=124 format=3 uid="uid://coraw7blqk3kb"]
 
+[ext_resource type="Script" uid="uid://4ws11r2gnubt" path="res://Scripts/State Machine/boss_demon.gd" id="1_s6huu"]
 [ext_resource type="Texture2D" uid="uid://dr8gy0crg1vee" path="res://Assets/boss_demon/individual sprites/03_demon_cleave/demon_cleave_1.png" id="1_t5bug"]
 [ext_resource type="Texture2D" uid="uid://dt7o1qv5dsqpr" path="res://Assets/boss_demon/individual sprites/03_demon_cleave/demon_cleave_2.png" id="2_50vo3"]
 [ext_resource type="Texture2D" uid="uid://b2061ksfda70i" path="res://Assets/boss_demon/individual sprites/03_demon_cleave/demon_cleave_3.png" id="3_6x4x2"]
@@ -513,6 +514,7 @@ animations = [{
 }]
 
 [node name="BossDemon" type="CharacterBody2D"]
+script = ExtResource("1_s6huu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 70)

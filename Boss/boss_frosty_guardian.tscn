@@ -1,6 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://dhq3cfuwiq1bt"]
+[gd_scene load_steps=55 format=3 uid="uid://dhq3cfuwiq1bt"]
 
 [ext_resource type="Texture2D" uid="uid://u2vdpux63bay" path="res://Assets/boss_Frost_Guardian/frost_guardian_free_192x128_SpriteSheet.png" id="1_rtprx"]
+[ext_resource type="Script" uid="uid://gf44387mxy7w" path="res://Scripts/State Machine/Boss/boss_frosty_guardian.gd" id="1_txxpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcgu4"]
 size = Vector2(80, 92)
@@ -384,6 +385,7 @@ animations = [{
 }]
 
 [node name="boss_frostyGuardian" type="CharacterBody2D"]
+script = ExtResource("1_txxpg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
