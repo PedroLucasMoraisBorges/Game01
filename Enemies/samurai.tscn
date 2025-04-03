@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bh6pudxcamabt"]
+[gd_scene load_steps=65 format=3 uid="uid://bh6pudxcamabt"]
 
 [ext_resource type="Texture2D" uid="uid://csrnsw50n2b27" path="res://Assets/Samurai/ATTACK 1.png" id="1_j2fy8"]
 [ext_resource type="Script" uid="uid://c5bvs1gamstq0" path="res://Enemies/samurai.gd" id="1_y8vpk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://lny1ryregkfy" path="res://Scripts/Global/state_machine.gd" id="9_0gmv0"]
 [ext_resource type="Script" uid="uid://dry3xx7r5geu3" path="res://Scripts/State Machine/Enemies/EnemyGroundIdle.gd" id="10_1akt7"]
 [ext_resource type="Script" uid="uid://m44h8xggopme" path="res://Scripts/State Machine/Enemies/EnemyGroundFollow.gd" id="11_10jnh"]
+[ext_resource type="Script" uid="uid://y341bbsyjqey" path="res://Scripts/State Machine/Enemies/attack.gd" id="12_dl086"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2fy8"]
 size = Vector2(16, 33)
@@ -417,7 +418,10 @@ shape = SubResource("RectangleShape2D_y8vpk")
 position = Vector2(0, -15)
 scale = Vector2(0.954427, 0.954427)
 sprite_frames = SubResource("SpriteFrames_x1dat")
-animation = &"idle"
+animation = &"attack"
+frame = 6
+frame_progress = 1.0
+speed_scale = 0.7
 
 [node name="EnemyProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("enemy")]
 offset_left = -13.0
@@ -446,6 +450,14 @@ enemy = NodePath("../..")
 [node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_10jnh")
 enemy = NodePath("../..")
+
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("12_dl086")
+enemy = NodePath("../..")
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+
+[node name="AttackTimer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="VisionBox" to="." method="_on_vision_box_area_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

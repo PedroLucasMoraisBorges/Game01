@@ -64,7 +64,7 @@ func HandleInput(delta):
 	if Input.is_action_just_pressed("attack") and is_on_floor() and not is_attacking:
 		attack()
 	# Definir animação se estiver no chão
-	if is_on_floor() and not is_attacking:  # Apenas muda animações se não estiver atacando
+	if is_on_floor() and not is_attacking and not isHurt:  # Apenas muda animações se não estiver atacando
 		if moving:
 			sprites.play("run")
 		else:
@@ -96,25 +96,18 @@ func adjust_hitbox_position():
 		collision.position.x = abs(collision_initial_position.x)
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if isHurt: return
+	isHurt = true
 	Global.currentHealth -= 1
 	
 	if Global.currentHealth < 0:
-		print("morreu")
+		Global.currentHealth = Global.maxHealth
 		
 	Global.healthChanged.emit()
-	isHurt = true
-	knockBack(area.get_parent().velocity)
 	
-	hurtTimer.start()
-	await hurtTimer.timeout
+	sprites.play("hurt")
+	await sprites.animation_finished
 	isHurt = false
-
-func knockBack(enemyVelocity: Vector2):
-	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockBackPower
-	velocity = knockbackDirection
-	move_and_slide()
-
+	
 
 func _on_sprites_frame_changed() -> void:
 	if sprites.animation == "idle": return

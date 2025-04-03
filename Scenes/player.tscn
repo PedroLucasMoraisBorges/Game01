@@ -204,6 +204,9 @@ position = Vector2(4, -6)
 scale = Vector2(0.97727, 0.97727)
 sprite_frames = SubResource("SpriteFrames_6pogt")
 animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.852504
+speed_scale = 0.6
 
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(28, -2)
