@@ -14,9 +14,18 @@ config/name="Novo Projeto de Jogo"
 run/main_scene="uid://en4ootnb2vy2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
+[audio]
+
+buses/default_bus_layout=""
+
 [autoload]
 
-Global="*res://Global.gd"
+Global="*res://Scripts/Global/Global.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [global_group]
 
