@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://en4ootnb2vy2"]
+[gd_scene load_steps=16 format=3 uid="uid://en4ootnb2vy2"]
 
 [ext_resource type="PackedScene" uid="uid://drkxaohflxnn5" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="Texture2D" uid="uid://bsudfwayl5dp" path="res://Assets/Texture/TX Tileset Ground.png" id="2_5a7ea"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dqf62qoqki1s7" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarUnder.png" id="6_k7acu"]
 [ext_resource type="Texture2D" uid="uid://xv4vvm52nebv" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarProgress.png" id="7_5v1tr"]
 [ext_resource type="Script" uid="uid://cho4l8ahstrhe" path="res://Scripts/Global/healthBar.gd" id="8_0fj1v"]
+[ext_resource type="Texture2D" uid="uid://bmkhgmjsa61h5" path="res://Assets/UI/RectangleBox_96x96.png" id="10_7yui6"]
+[ext_resource type="Script" uid="uid://d2ff10h4urjfh" path="res://Scripts/Global/stamina_bar.gd" id="10_ikia7"]
+[ext_resource type="Texture2D" uid="uid://dkv7gapkjl8ba" path="res://Assets/Fire Warrior/fire_knight.png" id="11_c5t2i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo5ed"]
 texture = ExtResource("2_5a7ea")
@@ -2217,7 +2220,7 @@ metadata/_edit_lock_ = true
 position = Vector2(620, 557)
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
-position = Vector2(52, 559)
+position = Vector2(91, 502)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-3, -6)
@@ -2228,10 +2231,10 @@ layout_direction = 2
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -284.0
-offset_top = -160.0
-offset_right = -132.0
-offset_bottom = -143.0
+offset_left = -243.0
+offset_top = -153.0
+offset_right = -91.0
+offset_bottom = -136.0
 grow_vertical = 0
 value = 100.0
 nine_patch_stretch = true
@@ -2242,3 +2245,28 @@ stretch_margin_bottom = 4
 texture_under = ExtResource("6_k7acu")
 texture_progress = ExtResource("7_5v1tr")
 script = ExtResource("8_0fj1v")
+
+[node name="StaminaBar" type="TextureProgressBar" parent="Player"]
+offset_left = -243.0
+offset_top = -134.0
+offset_right = -90.0
+offset_bottom = -116.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("6_k7acu")
+texture_progress = ExtResource("7_5v1tr")
+tint_progress = Color(0, 1, 0, 0.584314)
+script = ExtResource("10_ikia7")
+
+[node name="RectangleBox96x96" type="Sprite2D" parent="Player"]
+position = Vector2(-284, -147)
+scale = Vector2(0.677083, 0.677083)
+texture = ExtResource("10_7yui6")
+
+[node name="FireKnight" type="Sprite2D" parent="Player/RectangleBox96x96"]
+scale = Vector2(1.27841, 1.27841)
+texture = ExtResource("11_c5t2i")
