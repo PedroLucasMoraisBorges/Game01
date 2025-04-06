@@ -2217,7 +2217,7 @@ layer_1/tile_data = PackedInt32Array(1245205, 1900546, 20, 1310741, 1900546, 21,
 metadata/_edit_lock_ = true
 
 [node name="Samurai" parent="." instance=ExtResource("5_fo5ed")]
-position = Vector2(620, 557)
+position = Vector2(619, 540)
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
 position = Vector2(91, 502)
