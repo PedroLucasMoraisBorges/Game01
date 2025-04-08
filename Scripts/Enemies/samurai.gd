@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-class_name Enemy
+class_name Samurai
 signal healthChanged
 
 @export var maxHealth = 3

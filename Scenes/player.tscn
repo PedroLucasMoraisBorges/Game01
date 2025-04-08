@@ -51,7 +51,7 @@ tracks/3/path = NodePath("HitBox/CollisionShape2D:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.341674),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(45, 71)]
@@ -63,7 +63,7 @@ tracks/4/path = NodePath("HitBox/CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.341674),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-46, -12)]
@@ -711,7 +711,7 @@ wait_time = 2.0
 position = Vector2(1, -23)
 scale = Vector2(-1, 1)
 collision_layer = 32
-collision_mask = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-22.5, -32)
@@ -720,3 +720,4 @@ disabled = true
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="timeout" from="RESET" to="." method="_on_reset_timeout"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
