@@ -15,6 +15,7 @@ var jump_state_machine : AnimationNodeStateMachinePlayback
 var attack_state_machine : AnimationNodeStateMachinePlayback
 
 # GERAL VARIABLES
+@export var attack_damage: int = 10
 var gravity = 980
 var speed: float = 175
 var direction : float
@@ -55,9 +56,19 @@ func flip_sprite():
 		$Sprite2D.flip_h = false
 		
 func play_attack(type: String):
+	match type:
+		"01":
+			attack_damage = 10
+		"02":
+			attack_damage = 20
+		"03":
+			attack_damage = 30
+		"special":
+			attack_damage = 50
+			
 	attack_state_machine.travel("Attack_"+ type)
 	state_machine.travel("Attack")
-	set_speed(0)
+	set_speed(10)
 	
 func controls():
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -66,7 +77,7 @@ func controls():
 	
 	if Input.is_action_just_pressed("roll") and is_on_floor():
 		move_state_machine.travel("Roll")
-		set_speed(50.0)
+		set_speed(200.0)
 	
 	if Input.is_action_just_pressed("attack_right") and is_on_floor() and Global.currentStamina >= 30:
 		Global.currentStamina -= 30
@@ -124,3 +135,9 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 func _on_reset_timeout() -> void:
 	counter = 0
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	var enemy = area.get_parent()
+	if enemy.has_method("take_damage"):
+		enemy.take_damage(attack_damage)

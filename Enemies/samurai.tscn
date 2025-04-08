@@ -1,17 +1,9 @@
-[gd_scene load_steps=65 format=3 uid="uid://bh6pudxcamabt"]
+[gd_scene load_steps=57 format=3 uid="uid://bh6pudxcamabt"]
 
-[ext_resource type="Texture2D" path="res://Assets/Samurai/ATTACK 1.png" id="1_j2fy8"]
 [ext_resource type="Script" uid="uid://c5bvs1gamstq0" path="res://Scripts/Enemies/samurai.gd" id="1_y8vpk"]
-[ext_resource type="Texture2D" path="res://Assets/Samurai/HURT.png" id="2_y8vpk"]
-[ext_resource type="Texture2D" path="res://Assets/Samurai/IDLE.png" id="3_b4fj6"]
-[ext_resource type="Texture2D" path="res://Assets/Samurai/RUN.png" id="4_d1j7m"]
 [ext_resource type="Texture2D" uid="uid://dqf62qoqki1s7" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarUnder.png" id="6_65l4t"]
 [ext_resource type="Script" uid="uid://dv16awejhn80a" path="res://Scripts/Enemies/enemy_progress_bar.gd" id="6_b4fj6"]
 [ext_resource type="Texture2D" uid="uid://xv4vvm52nebv" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarProgress.png" id="7_0gmv0"]
-[ext_resource type="Script" uid="uid://lny1ryregkfy" path="res://Scripts/Global/state_machine.gd" id="9_0gmv0"]
-[ext_resource type="Script" uid="uid://dry3xx7r5geu3" path="res://Scripts/State Machine/Enemies/EnemyGroundIdle.gd" id="10_1akt7"]
-[ext_resource type="Script" uid="uid://m44h8xggopme" path="res://Scripts/State Machine/Enemies/EnemyGroundFollow.gd" id="11_10jnh"]
-[ext_resource type="Script" uid="uid://y341bbsyjqey" path="res://Scripts/State Machine/Enemies/attack.gd" id="12_dl086"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2fy8"]
 size = Vector2(16, 33)
@@ -26,191 +18,144 @@ size = Vector2(7.01369, 14.4658)
 size = Vector2(12, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65l4t"]
-atlas = ExtResource("1_j2fy8")
 region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gmv0"]
-atlas = ExtResource("1_j2fy8")
 region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1akt7"]
-atlas = ExtResource("1_j2fy8")
 region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10jnh"]
-atlas = ExtResource("1_j2fy8")
 region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dl086"]
-atlas = ExtResource("1_j2fy8")
 region = Rect2(384, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djm6h"]
-atlas = ExtResource("1_j2fy8")
 region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7g6ym"]
-atlas = ExtResource("1_j2fy8")
 region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8s8tc"]
-atlas = ExtResource("2_y8vpk")
 region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_54161"]
-atlas = ExtResource("2_y8vpk")
 region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cyxqg"]
-atlas = ExtResource("2_y8vpk")
 region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qydxy"]
-atlas = ExtResource("2_y8vpk")
 region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ybufa"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smkcj"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4fm1"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mkj2t"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v3kq"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(384, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cawp4"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_no8vl"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nraw2"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(672, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xjuet"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(768, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83gle"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(864, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8vpk"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b4fj6"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d1j7m"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x1dat"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aik25"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(384, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1aurx"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0w6d"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4d3w"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(672, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p37e8"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(768, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tb7kk"]
-atlas = ExtResource("3_b4fj6")
 region = Rect2(864, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rul88"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5va67"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udw4y"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_drvxj"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d63ai"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(384, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c87xm"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i32xm"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6705e"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(672, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5rpn"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(768, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxp2n"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(864, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lymqv"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(960, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mhjuo"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(1056, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ie2l"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(1152, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j38q3"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(1248, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6x6l"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(1344, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pvw2n"]
-atlas = ExtResource("4_d1j7m")
 region = Rect2(1440, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x1dat"]
@@ -438,24 +383,6 @@ texture_under = ExtResource("6_65l4t")
 texture_progress = ExtResource("7_0gmv0")
 script = ExtResource("6_b4fj6")
 enemy = NodePath("..")
-
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("9_0gmv0")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("10_1akt7")
-enemy = NodePath("../..")
-
-[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("11_10jnh")
-enemy = NodePath("../..")
-
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("12_dl086")
-enemy = NodePath("../..")
-
-[node name="Hurt" type="Node" parent="StateMachine"]
 
 [node name="AttackTimer" type="Timer" parent="."]
 

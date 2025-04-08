@@ -1,16 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://en4ootnb2vy2"]
+[gd_scene load_steps=20 format=3 uid="uid://en4ootnb2vy2"]
 
 [ext_resource type="PackedScene" uid="uid://drkxaohflxnn5" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="Texture2D" uid="uid://bsudfwayl5dp" path="res://Assets/Texture/TX Tileset Ground.png" id="2_5a7ea"]
 [ext_resource type="Texture2D" uid="uid://ch3b5smnstydc" path="res://Assets/Texture/oak_woods_tileset.png" id="3_8j60k"]
 [ext_resource type="Texture2D" uid="uid://k4hxxpllw33j" path="res://Assets/Texture/TX Village Props.png" id="3_fo5ed"]
-[ext_resource type="PackedScene" uid="uid://bh6pudxcamabt" path="res://Enemies/samurai.tscn" id="5_fo5ed"]
 [ext_resource type="Texture2D" uid="uid://dqf62qoqki1s7" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarUnder.png" id="6_k7acu"]
 [ext_resource type="Texture2D" uid="uid://xv4vvm52nebv" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarProgress.png" id="7_5v1tr"]
 [ext_resource type="Script" uid="uid://cho4l8ahstrhe" path="res://Scripts/Global/healthBar.gd" id="8_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://bmkhgmjsa61h5" path="res://Assets/UI/RectangleBox_96x96.png" id="10_7yui6"]
 [ext_resource type="Script" uid="uid://d2ff10h4urjfh" path="res://Scripts/Global/stamina_bar.gd" id="10_ikia7"]
 [ext_resource type="Texture2D" uid="uid://dkv7gapkjl8ba" path="res://Assets/Fire Warrior/fire_knight.png" id="11_c5t2i"]
+[ext_resource type="PackedScene" uid="uid://bet0rb7yjoj0p" path="res://Enemies/NigthBorne.tscn" id="12_7yui6"]
+[ext_resource type="PackedScene" uid="uid://duntaxndpjdcr" path="res://Enemies/lancer.tscn" id="12_kn0ld"]
+[ext_resource type="PackedScene" uid="uid://c6saf24d1c6it" path="res://Enemies/kobold.tscn" id="13_hgpy0"]
+[ext_resource type="PackedScene" uid="uid://dxuoakhxxewf0" path="res://Enemies/Flying_Demon.tscn" id="14_t2t4p"]
+[ext_resource type="PackedScene" uid="uid://dxtdldf6ceqg0" path="res://Enemies/Inocent_Gril.tscn" id="15_0pcbe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo5ed"]
 texture = ExtResource("2_5a7ea")
@@ -2216,9 +2220,6 @@ layer_1/name = "trees"
 layer_1/tile_data = PackedInt32Array(1245205, 1900546, 20, 1310741, 1900546, 21, 1376277, 1900546, 22, 1441813, 1900546, 23, 1179670, 1966082, 19, 1245206, 1966082, 20, 1310742, 1966082, 21, 1376278, 1966082, 22, 1441814, 1966082, 23, 1179671, 2031618, 19, 1245207, 2031618, 20, 1310743, 2031618, 21, 1376279, 2031618, 22, 1441815, 2031618, 23, 1507351, 2031618, 24, 1245208, 2097154, 20, 1310744, 2097154, 21, 1376280, 2097154, 22, 1441816, 2097154, 23, 1245209, 2162690, 20, 1310745, 2162690, 21, 1376281, 2162690, 22, 1441817, 2162690, 23, 1507358, 983042, 24, 1507359, 1048578, 24)
 metadata/_edit_lock_ = true
 
-[node name="Samurai" parent="." instance=ExtResource("5_fo5ed")]
-position = Vector2(620, 557)
-
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
 position = Vector2(91, 502)
 
@@ -2270,3 +2271,18 @@ texture = ExtResource("10_7yui6")
 [node name="FireKnight" type="Sprite2D" parent="Player/RectangleBox96x96"]
 scale = Vector2(1.27841, 1.27841)
 texture = ExtResource("11_c5t2i")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("12_7yui6")]
+position = Vector2(333, 574)
+
+[node name="Lancer" parent="." instance=ExtResource("12_kn0ld")]
+position = Vector2(403, 575)
+
+[node name="Kobold" parent="." instance=ExtResource("13_hgpy0")]
+position = Vector2(275, 577)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("14_t2t4p")]
+position = Vector2(608, 490)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("15_0pcbe")]
+position = Vector2(217, 574)
