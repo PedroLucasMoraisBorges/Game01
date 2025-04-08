@@ -361,7 +361,7 @@ shape = SubResource("RectangleShape2D_y8vpk")
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -15)
-scale = Vector2(0.954427, 0.954427)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_x1dat")
 animation = &"attack"
 frame = 6
