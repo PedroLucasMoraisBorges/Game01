@@ -5,5 +5,4 @@ func _ready() -> void:
 	update()
 
 func update():
-	print('jjj')
 	value = Global.currentStamina * 100 / Global.maxStamina
