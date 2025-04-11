@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cin7m2ydgsqu8"]
+
+[ext_resource type="Texture2D" uid="uid://dhtwamt8bsv2m" path="res://Assets/UI/ValueBar_128x16.png" id="1_6s7go"]
+[ext_resource type="Texture2D" uid="uid://xv4vvm52nebv" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarProgress.png" id="2_t7hhy"]
+[ext_resource type="Script" uid="uid://dqfttk1outwxp" path="res://Scripts/Enemies/enemy_health_bar.gd" id="3_lri4i"]
+
+[node name="EnemyHealthBar" type="TextureProgressBar"]
+offset_left = -19.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = -43.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("1_6s7go")
+texture_progress = ExtResource("2_t7hhy")
+script = ExtResource("3_lri4i")

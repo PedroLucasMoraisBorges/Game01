@@ -1,7 +1,5 @@
 extends CharacterBody2D
 class_name Player
-signal healthChanged
-signal staminaChanged
 
 var foot_step_frames = [1,5]
 
@@ -80,8 +78,7 @@ func controls():
 		set_speed(200.0)
 	
 	if Input.is_action_just_pressed("attack_right") and is_on_floor() and Global.currentStamina >= 30:
-		Global.currentStamina -= 30
-		Global.staminaChanged.emit()
+		Global.spend_stamina(30)
 		play_attack("03")
 	
 	if Input.is_action_just_pressed("attack_left") and delay <= 0:
@@ -95,9 +92,7 @@ func controls():
 			jump_state_machine.travel("JumpAtdawatack")
 	
 	if Input.is_action_just_pressed("ultimate") and is_on_floor() and Global.currentStamina >= 50:
-		Global.currentStamina -= 50
-		Global.staminaChanged.emit()
-		# state_machine.travel("GroupAttack/Attack01")
+		Global.spend_stamina(50)
 		play_attack("special")
 
 func attack(is_third):
@@ -125,17 +120,12 @@ func _physics_process(delta: float) -> void:
 		
 	controls()
 
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-	Global.currentHealth -= 1
-	
-	if Global.currentHealth < 0:
-		Global.currentHealth = Global.maxHealth
-		
-	Global.healthChanged.emit()
+func take_damage(damage:int):
+	print(damage)
+	Global.take_damage(damage)
 
 func _on_reset_timeout() -> void:
 	counter = 0
-
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	var enemy = area.get_parent()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://duntaxndpjdcr"]
+[gd_scene load_steps=28 format=3 uid="uid://clpxpi4akoxfn"]
 
 [ext_resource type="Texture2D" uid="uid://bj8ul3dnfdoam" path="res://Assets/Enemies/Lancer/sprite_sheets.png" id="1_1hxup"]
 [ext_resource type="Script" uid="uid://vu0llqh88w1j" path="res://Scripts/Enemies/lancer.gd" id="1_hgp2c"]
+[ext_resource type="PackedScene" uid="uid://cin7m2ydgsqu8" path="res://GUI/Enemies/enemy_health_bar.tscn" id="3_8y4vh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hxup"]
 height = 41.0
@@ -127,6 +128,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3), Vector2i(6, 3), Vector2i(7, 3)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [175.0],
+"method": &"set_speed"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_8y4vh"]
 length = 0.001
@@ -196,6 +211,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [175.0],
+"method": &"set_speed"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hck2"]
 _data = {
@@ -264,6 +293,9 @@ size = Vector2(33, 59)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hgp2c"]
 height = 40.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgp2c"]
+size = Vector2(67, 38)
+
 [node name="Lancer" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 2
@@ -293,6 +325,8 @@ parameters/Movement/conditions/is_moving = false
 parameters/Movement/conditions/is_stopped = false
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(36.5, -30.5)
@@ -307,3 +341,23 @@ collision_mask = 32
 self_modulate = Color(0, 0.862745, 0, 0.639216)
 position = Vector2(1, -20)
 shape = SubResource("CapsuleShape2D_hgp2c")
+
+[node name="VisionBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionBox"]
+position = Vector2(45.5, -24)
+shape = SubResource("RectangleShape2D_hgp2c")
+
+[node name="EnemyHealthBar" parent="." instance=ExtResource("3_8y4vh")]
+
+[node name="TURNTIME" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="VisionBox" to="." method="_on_vision_box_area_entered"]
+[connection signal="timeout" from="TURNTIME" to="." method="_on_turntime_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
