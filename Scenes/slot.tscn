@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://5f6w4ksg61p2"]
+
+[ext_resource type="Script" uid="uid://du48aporjdj48" path="res://Scenes/slot.gd" id="1_12ej0"]
+[ext_resource type="Texture2D" uid="uid://ddo2ccwmwxqcw" path="res://Assets/UI/HotkeyBox_34x34.png" id="1_luhj6"]
+
+[node name="Slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(34, 34)
+offset_right = 34.0
+offset_bottom = 34.0
+script = ExtResource("1_12ej0")
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_luhj6")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 34.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="item" type="Sprite2D" parent="CenterContainer/Panel"]

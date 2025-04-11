@@ -1,6 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://drkxaohflxnn5"]
+[gd_scene load_steps=55 format=3 uid="uid://drkxaohflxnn5"]
 
 [ext_resource type="Script" uid="uid://dm6qihg4vjxwh" path="res://Scripts/Player/player.gd" id="1_hshwv"]
+[ext_resource type="Resource" uid="uid://b2pxg00jbjpcw" path="res://Scripts/Inventory/playerInventory.tres" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://2nu1x5pjvs8y" path="res://Assets/Fire Warrior/fire_FREE_SpriteSheet_288x128.png" id="38_qpa8y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4o1l"]
@@ -671,10 +672,11 @@ size = Vector2(60.5, 88)
 collision_mask = 2
 script = ExtResource("1_hshwv")
 animation_tree = NodePath("AnimationTree")
+inventory = ExtResource("2_6t5aa")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 16
-collision_mask = 32
+collision_mask = 160
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 self_modulate = Color(0, 1, 0.416667, 1)

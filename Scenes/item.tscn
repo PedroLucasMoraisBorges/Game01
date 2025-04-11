@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://gfdvro3353ih"]
+
+[ext_resource type="Script" uid="uid://2n7pw6kx3wji" path="res://Scripts/Items/items.gd" id="1_76mu4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btogu"]
+resource_local_to_scene = true
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 128
+collision_mask = 17
+script = ExtResource("1_76mu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_btogu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

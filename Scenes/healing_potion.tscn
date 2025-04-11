@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1vw15t3t3wdl"]
+
+[ext_resource type="PackedScene" uid="uid://gfdvro3353ih" path="res://Scenes/item.tscn" id="1_qaugd"]
+[ext_resource type="Resource" uid="uid://iyi7jewp5dp3" path="res://Scripts/Items/healingPotion.tres" id="2_6hdgu"]
+[ext_resource type="Texture2D" uid="uid://d0r6otmem3meq" path="res://Assets/Items/Red potions/cropped.png" id="2_qaugd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cpkb"]
+resource_local_to_scene = true
+size = Vector2(14, 16)
+
+[node name="HealingPotion" instance=ExtResource("1_qaugd")]
+itemRes = ExtResource("2_6hdgu")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_7cpkb")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0.5, 0)
+scale = Vector2(1, 1)
+texture = ExtResource("2_qaugd")
