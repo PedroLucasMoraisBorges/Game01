@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://1yj53jdpy1e3"]
+
+[sub_resource type="TileSet" id="TileSet_62pkf"]
+
+[node name="Level02" type="Node2D"]
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="ground" type="TileMapLayer" parent="Tilemap"]
+tile_set = SubResource("TileSet_62pkf")
