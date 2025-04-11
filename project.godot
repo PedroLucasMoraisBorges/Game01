@@ -110,6 +110,7 @@ ultimate={
 2d_physics/layer_5="HurtBox"
 2d_physics/layer_6="HitBox"
 2d_physics/layer_7="VisionBox"
+2d_physics/layer_8="Items"
 
 [rendering]
 

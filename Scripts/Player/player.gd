@@ -8,6 +8,8 @@ var foot_step_frames = [1,5]
 
 @export var animation_tree : AnimationTree
 
+@export var inventory : Inventory
+
 # STATE MACHINE
 var state_machine: AnimationNodeStateMachinePlayback
 var move_state_machine : AnimationNodeStateMachinePlayback
@@ -127,6 +129,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	Global.currentHealth -= 1
+	if area.has_method("collect"):
+		print("Tentando coletar item")
+		area.collect(inventory)
 	
 	if Global.currentHealth < 0:
 		Global.currentHealth = Global.maxHealth
