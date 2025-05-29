@@ -4,9 +4,6 @@
 [ext_resource type="Script" uid="uid://vu0llqh88w1j" path="res://Scripts/Enemies/lancer.gd" id="1_hgp2c"]
 [ext_resource type="PackedScene" uid="uid://cin7m2ydgsqu8" path="res://GUI/Enemies/enemy_health_bar.tscn" id="3_8y4vh"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hxup"]
-height = 41.0
-
 [sub_resource type="Animation" id="Animation_0u152"]
 resource_name = "Attack01"
 length = 0.4
@@ -296,15 +293,13 @@ height = 40.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgp2c"]
 size = Vector2(67, 38)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hxup"]
+height = 38.0
+
 [node name="Lancer" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_hgp2c")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, -20)
-shape = SubResource("CapsuleShape2D_1hxup")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, -23)
@@ -352,12 +347,17 @@ shape = SubResource("RectangleShape2D_hgp2c")
 
 [node name="EnemyHealthBar" parent="." instance=ExtResource("3_8y4vh")]
 
-[node name="TURNTIME" type="Timer" parent="."]
+[node name="TurnTime" type="Timer" parent="."]
 wait_time = 3.0
 
 [node name="AttackCooldown" type="Timer" parent="."]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, -20)
+shape = SubResource("CapsuleShape2D_1hxup")
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="area_entered" from="VisionBox" to="." method="_on_vision_box_area_entered"]
-[connection signal="timeout" from="TURNTIME" to="." method="_on_turntime_timeout"]
+[connection signal="timeout" from="TurnTime" to="." method="_on_turntime_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

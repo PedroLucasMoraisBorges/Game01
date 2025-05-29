@@ -1,6 +1,7 @@
 extends Node
 signal healthChanged
 signal staminaChanged
+signal gameOver
 
 # LIFE
 @export var maxHealth: float = 100.0
@@ -13,8 +14,10 @@ signal staminaChanged
 
 func take_damage(amount: float):
 	currentHealth -= amount
-	if currentHealth < 0:
+	if currentHealth <= 0:
 		currentHealth = maxHealth
+		get_tree().change_scene_to_file("res://GUI/Menus/GameOver.tscn")
+		return
 	healthChanged.emit()
 
 func spend_stamina(amount: float):

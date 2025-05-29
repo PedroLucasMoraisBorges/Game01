@@ -32,6 +32,11 @@ var on_floor : bool:
 			state_machine.travel("Movement")
 		else:
 			state_machine.travel("Jump")
+		
+const soundAttack01 = preload("res://Assets/Sound/Sword Attack 1.ogg")
+const soundAttack02 = preload("res://Assets/Sound/Sword Attack 2.ogg")
+
+const soundShortGrass = preload("res://Assets/Sound/FootSteps/GRASS - Walk short 1.wav")
 
 
 func _ready() -> void:
@@ -39,6 +44,12 @@ func _ready() -> void:
 	move_state_machine = animation_tree.get("parameters/Movement/playback")
 	jump_state_machine = animation_tree.get("parameters/Jump/playback")
 	attack_state_machine = animation_tree.get("parameters/Attack/playback")
+	
+	$AudioStreamPlayer.volume_db = -10
+	
+	$FootStepsSounds.volume_db = -20
+	$FootStepsSounds.stream = soundShortGrass
+	
 
 func set_motion(value : bool):
 	animation_tree.set("parameters/Movement/conditions/is_moving", value)
@@ -58,8 +69,10 @@ func flip_sprite():
 func play_attack(type: String):
 	match type:
 		"01":
+			$AudioStreamPlayer.stream = soundAttack01
 			attack_damage = 10
 		"02":
+			$AudioStreamPlayer.stream = soundAttack02
 			attack_damage = 20
 		"03":
 			attack_damage = 30
@@ -91,7 +104,7 @@ func controls():
 			counter += 1
 			attack((counter % 3 == 0))
 		if not is_on_floor():
-			jump_state_machine.travel("JumpAtdawatack")
+			jump_state_machine.travel("JumpAttack")
 	
 	if Input.is_action_just_pressed("ultimate") and is_on_floor() and Global.currentStamina >= 50:
 		Global.spend_stamina(50)
@@ -128,7 +141,6 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		area.collect(inventory)
 
 func take_damage(damage:int):
-	print(damage)
 	Global.take_damage(damage)
 
 func _on_reset_timeout() -> void:
@@ -136,5 +148,6 @@ func _on_reset_timeout() -> void:
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	var enemy = area.get_parent()
+	print('jjj')
 	if enemy.has_method("take_damage"):
 		enemy.take_damage(attack_damage)

@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5eos1a2hpkqh"]
+
+[ext_resource type="Script" uid="uid://c8xnqoiajsjuw" path="res://GUI/Menus/pause.gd" id="1_mt8e2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86r7g"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 0.572549)
+
+[node name="Pause" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mt8e2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_86r7g")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/v_separation = 8
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Pausado"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Voltar ao jogo"
+
+[node name="ExitButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sair"
+
+[node name="ActionSound" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="GridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GridContainer/ExitButton" to="." method="_on_exit_button_pressed"]

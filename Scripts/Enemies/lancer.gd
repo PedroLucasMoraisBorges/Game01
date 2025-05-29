@@ -3,8 +3,10 @@ extends Enemy
 func _ready():
 	max_health = 100
 	speed = 175
+	distance_to_attack = 40
+	distance_to_give_up = 150
 	super()
-	$TURNTIME.start()
+	$TurnTime.start()
 
 func attack():
 	attack_damage = 10
@@ -21,7 +23,6 @@ func _on_turntime_timeout() -> void:
 
 		direction *= -1
 		is_turning = false
-
 
 func _on_vision_box_area_entered(area: Area2D):
 	var player = area.get_parent()

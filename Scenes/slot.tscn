@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://5f6w4ksg61p2"]
 
-[ext_resource type="Script" uid="uid://du48aporjdj48" path="res://Scenes/slot.gd" id="1_12ej0"]
+[ext_resource type="Script" path="res://Scenes/slot.gd" id="1_12ej0"]
 [ext_resource type="Texture2D" uid="uid://ddo2ccwmwxqcw" path="res://Assets/UI/HotkeyBox_34x34.png" id="1_luhj6"]
 
 [node name="Slot" type="Panel"]
