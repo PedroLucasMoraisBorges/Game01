@@ -1,10 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxtdldf6ceqg0"]
+[gd_scene load_steps=24 format=3 uid="uid://btxp02jkxhskv"]
 
+[ext_resource type="Script" uid="uid://w36rppp4rerl" path="res://Scripts/Enemies/inocent_gril.gd" id="1_bncvx"]
 [ext_resource type="Texture2D" uid="uid://c5q1t78ow7xm4" path="res://Assets/Enemies/Inocent_Gril/sprit_sheet.png" id="1_jqvv8"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jqvv8"]
-radius = 9.0
-height = 34.0
 
 [sub_resource type="Animation" id="Animation_5mb3i"]
 resource_name = "Attack"
@@ -138,18 +135,22 @@ transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransi
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bncvx"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bncvx"]
+size = Vector2(130, 33)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jqvv8"]
+radius = 9.0
+height = 34.0
+
 [node name="Inocent_Gril" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-1, -17)
-shape = SubResource("CapsuleShape2D_jqvv8")
+script = ExtResource("1_bncvx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -31)
-scale = Vector2(-1, 1)
+rotation = 3.14159
+scale = Vector2(1, -1)
 texture = ExtResource("1_jqvv8")
 hframes = 12
 vframes = 11
@@ -174,3 +175,19 @@ collision_mask = 32
 self_modulate = Color(0, 0.862745, 0, 0.639216)
 position = Vector2(1, -15)
 shape = SubResource("CapsuleShape2D_bncvx")
+
+[node name="VisionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionBox"]
+position = Vector2(80, -26.5)
+shape = SubResource("RectangleShape2D_bncvx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -17)
+shape = SubResource("CapsuleShape2D_jqvv8")
+
+[node name="TurnTime" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="AttackCooldown" type="Timer" parent="."]

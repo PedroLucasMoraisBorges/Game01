@@ -40,15 +40,15 @@ func _physics_process(_delta: float):
 	if playerAvisted and target_player:
 		var distance = global_position.distance_to(target_player.global_position)
 
-		if distance <= 40 and can_attack:
+		if distance <= distance_to_attack and can_attack:
 			can_attack = false
 			$AttackCooldown.start()
 			attack()
 		
-		elif distance > 150:
+		elif distance > distance_to_give_up:
 			playerAvisted = false
 			target_player = null
-			$TURNTIME.start()
+			$TurnTime.start()
 		
 		elif not can_attack:
 			set_motion(false)
@@ -95,8 +95,8 @@ func persuit(player):
 	target_player = player
 	update_direction_to_player()
 
-	if has_node("TURNTIME"):
-		$TURNTIME.stop()
+	if has_node("TurnTime"):
+		$TurnTime.stop()
 
 
 func Movement():
@@ -111,10 +111,12 @@ func Movement():
 
 func flip_sprite():
 	if direction < 0:
-		hitbox.scale.x = -1
+		if hitbox:
+			hitbox.scale.x = -1
 		sprite.flip_h = true
 	elif direction > 0:
-		hitbox.scale.x = 1
+		if hitbox:
+			hitbox.scale.x = 1
 		sprite.flip_h = false
 
 

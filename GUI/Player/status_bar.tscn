@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctx36aw0tv14p"]
+
+[ext_resource type="Texture2D" uid="uid://dqf62qoqki1s7" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarUnder.png" id="1_gphnv"]
+[ext_resource type="Texture2D" uid="uid://xv4vvm52nebv" path="res://Assets/Ninja Adventure - Asset Pack/Ui/LifeReceptacle/healthbarProgress.png" id="2_eoleg"]
+[ext_resource type="Script" uid="uid://cho4l8ahstrhe" path="res://Scripts/Global/healthBar.gd" id="3_l3an1"]
+[ext_resource type="Script" path="res://Scripts/Global/stamina_bar.gd" id="4_hf37t"]
+
+[node name="StatusBar" type="Node2D"]
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_right = 161.0
+offset_bottom = 14.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("1_gphnv")
+texture_progress = ExtResource("2_eoleg")
+script = ExtResource("3_l3an1")
+
+[node name="StaminaBar" type="TextureProgressBar" parent="."]
+offset_top = 16.0
+offset_right = 161.0
+offset_bottom = 28.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("1_gphnv")
+texture_progress = ExtResource("2_eoleg")
+script = ExtResource("4_hf37t")

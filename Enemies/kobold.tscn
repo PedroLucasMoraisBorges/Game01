@@ -1,10 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://c6saf24d1c6it"]
+[gd_scene load_steps=25 format=3 uid="uid://2qrb422maepo"]
 
+[ext_resource type="Script" uid="uid://ch1nlkwtmrt4y" path="res://Scripts/Enemies/kobold.gd" id="1_ksm7w"]
 [ext_resource type="Texture2D" uid="uid://cwumhu074uxbr" path="res://Assets/Enemies/Kobold/sprite_sheet.png" id="1_nvgps"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvgps"]
-radius = 11.0
-height = 42.0
+[ext_resource type="PackedScene" uid="uid://cin7m2ydgsqu8" path="res://GUI/Enemies/enemy_health_bar.tscn" id="3_luo4q"]
 
 [sub_resource type="Animation" id="Animation_7rtfr"]
 resource_name = "Attack"
@@ -76,6 +74,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [150.0],
+"method": &"set_speed"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_luo4q"]
 length = 0.001
@@ -145,6 +157,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [150.0],
+"method": &"set_speed"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s7v7n"]
 _data = {
@@ -211,14 +237,17 @@ size = Vector2(21.5, 15)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ksm7w"]
 height = 36.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_luo4q"]
+size = Vector2(61, 26)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvgps"]
+radius = 11.0
+height = 34.0
+
 [node name="Kobold" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -21)
-shape = SubResource("CapsuleShape2D_nvgps")
+script = ExtResource("1_ksm7w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(9, -29)
@@ -242,7 +271,7 @@ parameters/Movement/conditions/is_stopped = false
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(23.25, -17.5)
@@ -257,3 +286,30 @@ collision_mask = 32
 self_modulate = Color(0, 0.862745, 0, 0.639216)
 position = Vector2(1, -21)
 shape = SubResource("CapsuleShape2D_ksm7w")
+
+[node name="VisionBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionBox"]
+position = Vector2(42.5, -26)
+shape = SubResource("RectangleShape2D_luo4q")
+
+[node name="EnemyHealthBar" parent="." instance=ExtResource("3_luo4q")]
+offset_left = -20.0
+offset_right = 21.0
+
+[node name="TurnTime" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -21)
+shape = SubResource("CapsuleShape2D_nvgps")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="VisionBox" to="." method="_on_vision_box_area_entered"]
+[connection signal="timeout" from="TurnTime" to="." method="_on_turn_time_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjqc0rn0hpiqf"]
+
+[ext_resource type="Texture2D" uid="uid://ld3gw5xy4n6" path="res://GUI/Menus/ChatGPT Image 4 de abr. de 2025, 21_01_40 1 (1).png" id="1_6w1ex"]
+[ext_resource type="Script" uid="uid://dme8bv6m24ilm" path="res://Scripts/UI/main_menu.gd" id="1_yk3ul"]
+[ext_resource type="Texture2D" uid="uid://baek244oblh5l" path="res://GUI/Menus/download.png" id="2_8e51s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_be2jq"]
+texture = ExtResource("1_6w1ex")
+modulate_color = Color(0.47788, 0.47788, 0.47788, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yk3ul"]
+texture = ExtResource("2_8e51s")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e51s"]
+bg_color = Color(0.501961, 0.501961, 0.501961, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.592157)
+shadow_size = 3
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yk3ul")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_be2jq")
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 103.0
+offset_right = 250.0
+offset_bottom = 603.0
+grow_horizontal = 2
+
+[node name="Panel2" type="Panel" parent="CenterContainer2"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_yk3ul")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 9.0
+offset_right = 200.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 45)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_8e51s")
+text = "Iniciar Jogo"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 45)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_8e51s")
+text = "Sair"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_exit_pressed"]
