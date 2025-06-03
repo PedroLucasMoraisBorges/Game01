@@ -2,11 +2,9 @@ extends Control
 
 const hoverSound = preload("res://Assets/Sound/GUI/menuHover.ogg")
 const confirmSound = preload("res://Assets/Sound/GUI/menuSelect.ogg")
-const music = preload("res://Assets/Sound/Music/Dark Ambient 1.wav")
 @onready var butons = $VBoxContainer
 
 func _ready() -> void:
-	$Music.stream = music
 	$Music.play()
 	
 	for child in butons.get_children():

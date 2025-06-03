@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjqc0rn0hpiqf"]
+[gd_scene load_steps=8 format=3 uid="uid://bjqc0rn0hpiqf"]
 
 [ext_resource type="Texture2D" uid="uid://ld3gw5xy4n6" path="res://GUI/Menus/ChatGPT Image 4 de abr. de 2025, 21_01_40 1 (1).png" id="1_6w1ex"]
 [ext_resource type="Script" uid="uid://dme8bv6m24ilm" path="res://Scripts/UI/main_menu.gd" id="1_yk3ul"]
 [ext_resource type="Texture2D" uid="uid://baek244oblh5l" path="res://GUI/Menus/download.png" id="2_8e51s"]
+[ext_resource type="AudioStream" uid="uid://bgfn1qj16t10p" path="res://Assets/Sound/Music/Castelo de Sombras.mp3" id="4_be2jq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_be2jq"]
 texture = ExtResource("1_6w1ex")
@@ -64,6 +65,8 @@ offset_bottom = 23.0
 [node name="HoverSound" type="AudioStreamPlayer" parent="."]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_be2jq")
+volume_db = -11.418
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(300, 0)
