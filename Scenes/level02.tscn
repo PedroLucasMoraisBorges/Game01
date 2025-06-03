@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=4 uid="uid://1yj53jdpy1e3"]
+[gd_scene load_steps=11 format=4 uid="uid://1yj53jdpy1e3"]
 
 [ext_resource type="Texture2D" uid="uid://bs747utgfho20" path="res://Assets/PixelFantasy_Caves_1.0 (2)/mainlev_build.png" id="1_tfva7"]
 [ext_resource type="PackedScene" uid="uid://drkxaohflxnn5" path="res://Scenes/player.tscn" id="2_wfb5c"]
 [ext_resource type="Texture2D" uid="uid://doxodxtju8a4h" path="res://Assets/PixelFantasy_Caves_1.0 (2)/background1.png" id="3_jwhbi"]
 [ext_resource type="Texture2D" uid="uid://cxpfbdcnootgq" path="res://Assets/PixelFantasy_Caves_1.0 (2)/props2.png" id="3_rvilf"]
 [ext_resource type="Texture2D" uid="uid://bv2s6p112ra1s" path="res://Assets/PixelFantasy_Caves_1.0 (2)/background3.png" id="4_rvilf"]
+[ext_resource type="AudioStream" uid="uid://dbcggjq7fns4c" path="res://Audio/mp3/Pixel 12.mp3" id="6_3lja8"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3lja8"]
 texture = ExtResource("3_rvilf")
@@ -2820,3 +2822,10 @@ position = Vector2(324, 416)
 scale = Vector2(2.5, 2.5)
 
 [node name="Camera2D" type="Camera2D" parent="Tilemap/Player"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_3lja8")
+volume_db = 8.063
+autoplay = true
+max_distance = 200000.0
+
