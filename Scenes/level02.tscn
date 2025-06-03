@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bv2s6p112ra1s" path="res://Assets/PixelFantasy_Caves_1.0 (2)/background3.png" id="4_rvilf"]
 [ext_resource type="AudioStream" uid="uid://dbcggjq7fns4c" path="res://Audio/mp3/Pixel 12.mp3" id="6_3lja8"]
 
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3lja8"]
 texture = ExtResource("3_rvilf")
 9:0/0 = 0
@@ -2827,3 +2828,4 @@ stream = ExtResource("6_3lja8")
 volume_db = 8.063
 autoplay = true
 max_distance = 200000.0
+
