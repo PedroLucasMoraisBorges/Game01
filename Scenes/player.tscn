@@ -1,7 +1,13 @@
-[gd_scene load_steps=55 format=3 uid="uid://drkxaohflxnn5"]
+[gd_scene load_steps=69 format=3 uid="uid://drkxaohflxnn5"]
 
 [ext_resource type="Script" uid="uid://dm6qihg4vjxwh" path="res://Scripts/Player/player.gd" id="1_hshwv"]
 [ext_resource type="Resource" uid="uid://b2pxg00jbjpcw" path="res://Scripts/Inventory/playerInventory.tres" id="2_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://c6qpbe0cbp0bf" path="res://Assets/Sound/Player/Firespray 1.ogg" id="3_vgqql"]
+[ext_resource type="AudioStream" uid="uid://cm4j8epito2m" path="res://Assets/Sound/Player/Fireball 3.ogg" id="3_x3wgy"]
+[ext_resource type="AudioStream" uid="uid://csi8ydmdvgkdw" path="res://Assets/Sound/Player/Fireball 2.ogg" id="4_fkybt"]
+[ext_resource type="AudioStream" uid="uid://bgcddhjvrdhy0" path="res://Assets/Sound/Player/20. Death Groan (Male).wav" id="6_8erm5"]
+[ext_resource type="AudioStream" uid="uid://bfk8ps0nmfoyf" path="res://Assets/Sound/Player/GRASS - Pre Jump 4.wav" id="7_3smsa"]
+[ext_resource type="AudioStream" uid="uid://ba1t7ufrle6m7" path="res://Assets/Sound/Player/Sword Impact Hit 1.ogg" id="7_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://2nu1x5pjvs8y" path="res://Assets/Fire Warrior/fire_FREE_SpriteSheet_288x128.png" id="38_qpa8y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4o1l"]
@@ -194,6 +200,21 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(-59, -16)]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_x3wgy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_nmr2m"]
 resource_name = "Ataque04"
@@ -247,6 +268,25 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(-75, -19)]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 1.22,
+"start_offset": 0.0,
+"stream": ExtResource("3_vgqql")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_fkybt")
+}],
+"times": PackedFloat32Array(0.1, 0.9)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ax3m3"]
 resource_name = "Block"
@@ -266,6 +306,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8eeqe"]
 resource_name = "Death"
+length = 1.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -279,6 +320,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 13), Vector2i(1, 13), Vector2i(2, 13), Vector2i(3, 13), Vector2i(4, 13), Vector2i(5, 13), Vector2i(6, 13), Vector2i(7, 13), Vector2i(8, 13), Vector2i(9, 13), Vector2i(12, 13)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_8erm5")
+}],
+"times": PackedFloat32Array(0.3)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_qpa8y"]
 resource_name = "Fall"
@@ -300,7 +356,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_3vlem"]
 resource_name = "Hurt"
-loop_mode = 1
+length = 0.6
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -314,6 +370,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 12), Vector2i(1, 12), Vector2i(2, 12), Vector2i(3, 12), Vector2i(4, 12), Vector2i(5, 12)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_f1ek2")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_sbwqj"]
 resource_name = "Idle"
@@ -374,6 +445,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_3smsa")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_x3wgy"]
 resource_name = "JumpAttack"
@@ -567,6 +653,25 @@ states/Start/position = Vector2(200, 269)
 transitions = ["Start", "Attack_01", SubResource("AnimationNodeStateMachineTransition_7dp3o")]
 graph_offset = Vector2(0, 173.588)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_igrcy"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_olqyp"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h4iuc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wpjfl"]
+reset_ends = true
+states/Death/node = SubResource("AnimationNodeAnimation_igrcy")
+states/Death/position = Vector2(492, 100)
+transitions = ["Start", "Death", SubResource("AnimationNodeStateMachineTransition_olqyp"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_h4iuc")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fs7ks"]
+animation = &"Fall"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ukyrk"]
 animation = &"Ataque01"
 
@@ -601,6 +706,9 @@ states/Attack02/position = Vector2(546, 100)
 states/Attack03/node = SubResource("AnimationNodeAnimation_fd4e3")
 states/Attack03/position = Vector2(709, 100)
 transitions = ["Start", "Attack01", SubResource("AnimationNodeStateMachineTransition_qqcod"), "Attack03", "End", SubResource("AnimationNodeStateMachineTransition_igrcy"), "Attack01", "Attack02", SubResource("AnimationNodeStateMachineTransition_fs7ks"), "Attack02", "Attack03", SubResource("AnimationNodeStateMachineTransition_l6n3p")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l6n3p"]
+animation = &"Hurt"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h4iuc"]
 animation = &"Fall"
@@ -684,18 +792,32 @@ reset = false
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fd4e3"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wpjfl"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7dp3o"]
 states/Attack/node = SubResource("AnimationNodeStateMachine_x3wgy")
 states/Attack/position = Vector2(499, 345)
+states/Death/node = SubResource("AnimationNodeStateMachine_wpjfl")
+states/Death/position = Vector2(844, 409.453)
 states/End/position = Vector2(844, 257)
+states/Fall/node = SubResource("AnimationNodeAnimation_fs7ks")
+states/Fall/position = Vector2(742.257, 409.453)
 states/GroupAttack/node = SubResource("AnimationNodeStateMachine_8erm5")
 states/GroupAttack/position = Vector2(638, 237)
+states/Hurt/node = SubResource("AnimationNodeAnimation_l6n3p")
+states/Hurt/position = Vector2(305, 366.453)
 states/Jump/node = SubResource("AnimationNodeStateMachine_f1ek2")
 states/Jump/position = Vector2(484, 163)
 states/Movement/node = SubResource("AnimationNodeStateMachine_pu2lt")
 states/Movement/position = Vector2(305, 257)
 states/Start/position = Vector2(116, 257)
-transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_gymyn"), "Attack", "Movement", SubResource("AnimationNodeStateMachineTransition_tx1dd")]
+transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_gymyn"), "Attack", "Movement", SubResource("AnimationNodeStateMachineTransition_tx1dd"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_fd4e3"), "Hurt", "Movement", SubResource("AnimationNodeStateMachineTransition_wpjfl")]
 graph_offset = Vector2(-221.743, 151.453)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkybt"]
